@@ -10,26 +10,22 @@ def dfs(V, s, goal, G):
 
     # リストを「スタック」として使用するなら、append/pop()
     # 「キュー」を使いたい場合は、「deque」使って、append/popleft()
-    # from collections import deque
-    # queue = deque([1, 2, 3])
-    # queue.append(4)
-    # queue.popleft()  # -> 1
-
-    stack = []
-    stack.append(s)  # sから探索する
+    from collections import deque
+    queue = deque([])
+    queue.append(s)  # sから探索する
     seen[s] = True
 
-    # 深さ優先探索
-    while len(stack) != 0:  # 探索リストが残っている限り続行
+    # 幅優先探索
+    while len(queue) != 0:  # 探索リストが残っている限り続行
         # 現在の位置
-        state = stack.pop()
-        seen[state] = True
+        state = queue.popleft()
+        # seen[state] = True
         if state != goal:
             neightbors = G[state]
             for next in neightbors:
                 if seen[next] == False:  # 未探索なら、探索リストに追加する
-                    # seen[next] = True
-                    stack.append(next)
+                    seen[next] = True
+                    queue.append(next)
                     print(f"{state} -> {next}")
 
     # if seen[goal]:
