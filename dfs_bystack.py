@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # *coding: utf-8
 
-def dfs(V, s, goal, G):
+def dfs_bystack(V, s, goal, G):
 
     # 既に見たノードか記録する
     seen = {}
@@ -44,4 +44,4 @@ if __name__ == '__main__':
     s = 0
     t = 6
     G = {0: {1, 2}, 1: {4, 5}, 2: {3, 4}, 3: {4, 6}, 4: {6}, 5: {4, 6}}
-    print(dfs(V, s, t, G))
+    print(dfs_bystack(V, s, t, G))
